@@ -8,20 +8,24 @@ form.addEventListener('submit', (event) =>{
 
     let userInput = input.value 
     let isPrime
-
-    for (let i = 1; i <= userInput; i++){
-    
-        if ((userInput % i == 0) && (i != userInput && i != 1)){
-            isPrime = false
-            break
-        }
-    }
-
-    if (isPrime == false){
+    if (userInput == 1){
         window.alert("The number is not prime")
     }
     else{
-        window.alert("The number is prime")
+        for (let i = 1; i <= userInput; i++){
+        
+            if ((userInput % i == 0) && (i != userInput && i != 1)){
+                isPrime = false
+                break
+            }
+        }
+
+        if (isPrime == false){
+            window.alert("The number is not prime")
+        }
+        else{
+            window.alert("The number is prime")
+        }
     }
 });
 
