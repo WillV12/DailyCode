@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+class Stairs {
+    public static void main(String args[]) {
+   
+        Scanner input = new Scanner(System.in);
+        System.out.println("How many stairs?");
+        int number = input.nextInt();
+        String buffer = input.nextLine();
+        System.out.println("What is the stair?");
+        String character = input.nextLine();
+        String output = "";
+        
+        for (int i = 0; i<number; i++){
+            output += character;
+            String stair = String.format("%" + number + "s", output);
+            System.out.println(stair);
+        }
+  }
+}
