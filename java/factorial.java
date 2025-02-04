@@ -20,7 +20,7 @@ class Main {
         input.close();
         
     }
-    
+    // Calculates the factorial
     public static long calc(int number){
         long factorial = 1;
         for (int i = 0; i < number; i++ ){
