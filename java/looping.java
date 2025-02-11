@@ -7,8 +7,8 @@ class looping {
       while (go){
           System.out.println("Enter the number of which program you wish to run:\n");
           System.out.println("1. Repeat Addition\n2. Guess the Number\n3. Validate Positive Number Input\n4. Skip Multiples of 3\n5. Exit\n");
-          System.out.print("Input: ");
           int choice = input.nextInt();
+          System.out.print("Input: ");
           
           // Looks at the user input and runs the corresponding method or exits
           // The scanner object, input, is passed through to methods 1-3
@@ -114,4 +114,5 @@ class looping {
        }
        System.out.println("\n");
     }
+
 }
