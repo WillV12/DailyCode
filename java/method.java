@@ -64,23 +64,24 @@ public class method {
     }
     
     public static void getUserInput(){
-        Scanner input = new Scanner(System.in);
-            try{
-                System.out.println("Input three numbers and I'll output some stats  }:)\n");
-                System.out.print("Enter the first number: ");
-                int number1 = input.nextInt();
-                System.out.print("Enter the second number: ");
-                int number2 = input.nextInt();
-                System.out.print("Enter the third number: ");
-                int number3 = input.nextInt();
-                System.out.print("\n");
-                processNumbers(number1, number2, number3);
-            } catch(Exception e){
-                System.out.println("\nOne of the inputs is false\nTry again...\n\n");
-                main(null);
+            try(Scanner input = new Scanner(System.in)) {
+                try{
+                    System.out.println("Input three numbers and I'll output some stats  }:)\n");
+                    System.out.print("Enter the first number: ");
+                    int number1 = input.nextInt();
+                    System.out.print("Enter the second number: ");
+                    int number2 = input.nextInt();
+                    System.out.print("Enter the third number: ");
+                    int number3 = input.nextInt();
+                    System.out.print("\n");
+                    processNumbers(number1, number2, number3);
+                } catch(Exception e){
+                    System.out.println("\nOne of the inputs is false\nTry again...\n\n");
+                    main(null);
+                }
+                System.out.println("\n\n");
+                input.close();
             }
-        System.out.println("\n\n");
-
 
             
         }
