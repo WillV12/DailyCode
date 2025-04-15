@@ -176,9 +176,9 @@ class AnimalKingdomTest{
         a1.speak();
         a2.speak();
 
-        //Animal cow = new Animal("Liam");
-        //Mammal liam = (Mammal) cow;
-        //liam.performTrick();
+        Animal cow = new Mammal("Liam", true, "penis", 2, "AHHHHHHHHHH");
+        Mammal liam = (Mammal) cow;
+        liam.performTrick();
 
         System.out.println(a1.equals(new Dog("Buddy")));
     }
