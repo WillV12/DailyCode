@@ -28,13 +28,24 @@ class Product{
         return this.name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
+
     public double getPrice(){
         return this.price;
     }
 
+    public void setPrice(double price){
+        this.price = price;
+    }
+
+
     public int getProductId(){
         return this.productId;
     }
+
 
 
     // - Override toString() to return formatted product details
@@ -79,6 +90,10 @@ class Electronics extends Product{
     @Override
     public String toString(){
         return super.toString() + "\nBrand: " + this.brand + "\nHas Battery: " + this.hasBattery;
+    }
+
+    protected static void warrantyInfo(){
+        System.out.println("Warranty info:\n- Good for 6 months\n- Don't be stupid\n- I dunno...");
     }
 
 }
@@ -130,13 +145,18 @@ public class SuperStoreTest{
         Electronics phone = new Electronics("IPhone 10", 1000, "Apple", true);
         Grocery pear = new Grocery("Pear", .30, .15, true);
         Toy lawnDart = new Toy("Lawn Dart", 14.00, 5);
+        Coupon techCoupon = new Coupon(.15);
         
         // - Store them in a Product[] array
         Product[] products = {phone, pear, lawnDart};
         // - Loop through and print each item
         for (Object item: products){
             System.out.println(item.toString());
-            System.out.println("\n");
+            if (item instanceof Electronics){
+                Electronics temp = (Electronics) item;
+                temp.warrantyInfo();
+            }
+            System.out.println();
 
         }
         // - Call equals() to compare two products with the same ID and name
@@ -147,17 +167,48 @@ public class SuperStoreTest{
         System.out.println("a1.equals(a2): " + a1.equals(a2));
         System.out.println("a1.equals(a1): " + a1.equals(a1));
         System.out.println("a1.equals(phone): " + a1.equals(phone));
+
+        System.out.println("\nBefore 15% coupon: " + phone.getPrice());
+        phone.setPrice(techCoupon.applyCoupon(phone.getPrice()));
+        System.out.println("After 15% coupon: " + phone.getPrice() );
     }
 }
 
 
 // Additional TODOs:
 // 1. Try to extend Toy — what happens and why?
-// I tried extending Toy and got an error. This was due to Toy being final meaning it cannot be extended.
+// I tried extending Toy and got an error stating that the subclass could not inherit aspects from Toy. This was due to Toy being final meaning it cannot be extended.
 
 // 2. Make a class Coupon with a final discountRate and apply it to a Product
 
 class Coupon{
-    // 3. Add a method to Electronics called warrantyInfo() and mark it final
-    // 4. Use access modifiers appropriately and explain your choices in comments
+    private final double discount;
+
+    Coupon(double discount){
+        this.discount = discount;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+
+
+    public double applyCoupon(double price){
+        return price - (price*discount);
+    }
 }
+
+
+// 3. Add a method to Electronics called warrantyInfo() and mark it final
+// 4. Use access modifiers appropriately and explain your choices in comments
+
+/**
+ * For the warrantyInfo method, I used a protected access modifier. I did this since the method is final
+ * and should be restricted as much as possible. using protected, the user can print out the warranty info whenever they would like
+ * as long as they are in the same package. 
+ * 
+ * For the class, I thought it best that the discount attribute be completely private. You wouldn't want a user to be able to adjust
+ * a coupon and make 100% off or something like that. The only thing the use needs from the coupon is the value and applying it to a given price
+ * 
+ */
